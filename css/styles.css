@@ -1,0 +1,255 @@
+ */ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ body {
+     font-family: 'Montserrat', sans-serif;
+     background-color: #010a13;
+     color: #f0e6d2;
+     padding: 40px 20px;
+ }
+
+ /*   2. ESTRUCTURA Y DISEÑO DE CONTENEDORES
+    */
+
+ .encabezado-principal {
+     text-align: center;
+     margin-bottom: 50px;
+ }
+
+ .contenedor-principal {
+     max-width: 1200px;
+     margin: 0 auto;
+ }
+
+ /* Disposición con CSS Grid */
+ .galeria-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+     gap: 30px;
+ }
+
+ .pie-pagina {
+     text-align: center;
+     margin-top: 60px;
+     color: #61686f;
+     font-size: 0.9rem;
+ }
+
+ /* 
+   3. ESTILOS DE LAS TARJETAS (Efectos base y maquetación)
+    */
+ .tarjeta-rol {
+     background-color: #091420;
+     /* Azul oscuro de tarjetas */
+     border: 1px solid #c8aa6e;
+     /* Borde dorado hexagonal de LoL */
+     border-radius: 0px 20px 0px 20px;
+     overflow: hidden;
+     opacity: 0;
+     /* Inicialmente oculto para la animación de entrada */
+
+     /* Propiedades individuales de la Animación de Entrada Escalonada */
+     animation-name: entrada-tarjeta;
+     animation-duration: 0.8s;
+     animation-timing-function: ease-out;
+     /* Timing Function #1 */
+     animation-delay: 0s;
+     animation-iteration-count: 1;
+     animation-fill-mode: forwards;
+     /* Mantiene el estado final de opacity: 1 */
+
+     /* Transición interna suave para interactividad */
+     transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+ }
+
+ .contenedor-imagen {
+     position: relative;
+     width: 100%;
+     height: 230px;
+     overflow: hidden;
+ }
+
+ .contenedor-imagen img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     transition: transform 0.5s ease;
+ }
+
+ .contenido-tarjeta {
+     padding: 20px;
+ }
+
+ .rol-titulo {
+     color: #c89b3c;
+     /* Dorado brillante de Runaterra */
+     margin-bottom: 12px;
+     font-size: 1.35rem;
+     font-weight: 700;
+ }
+
+ .rol-descripcion {
+     color: #a0a5b2;
+     font-size: 0.95rem;
+     line-height: 1.6;
+     margin-bottom: 20px;
+     height: auto;
+     /* Altura fija para alinear los botones uniformemente */
+     overflow: hidden;
+ }
+
+ /* Estilos de la etiqueta flotante*/
+ .etiqueta-badge {
+     position: absolute;
+     top: 15px;
+     left: 15px;
+     background-color: #1e2328;
+     color: #00eff6;
+     /* Azul Nexo brillante */
+     padding: 4px 10px;
+     font-size: 0.75rem;
+     font-weight: bold;
+     text-transform: uppercase;
+     border: 1px solid #00eff6;
+     border-radius: 5px;
+     z-index: 10;
+
+     /* Animación Continua */
+     animation-name: pulso-etiqueta;
+     animation-duration: 1.8s;
+     animation-timing-function: linear;
+     /* Timing Function #2 */
+     animation-delay: 0s;
+     animation-iteration-count: infinite;
+     animation-fill-mode: none;
+ }
+
+ /* Botón de acción */
+ .btn-accion {
+     width: 100%;
+     background-color: #1e2328;
+     border: 1px solid #c8aa6e;
+     border-radius: 5px;
+     color: #c8aa6e;
+     padding: 10px;
+     font-weight: bold;
+     cursor: pointer;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     transition: background-color 0.3s ease, color 0.3s ease;
+ }
+
+ /* 
+   4. ANIMACIONES ESPECÍFICAS Y EFECTOS INTERACTIVOS
+    */
+
+ /* Animación 1: Entrada del título principal al cargar */
+ .titulo-galeria {
+     font-size: 2.5rem;
+     color: #f0e6d2;
+     margin-bottom: 10px;
+
+     /* Propiedades individuales */
+     animation-name: entrada-titulo;
+     animation-duration: 1.2s;
+     animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+     /* Timing Function #3 */
+     animation-delay: 0.1s;
+     animation-iteration-count: 1;
+     animation-fill-mode: forwards;
+ }
+
+ /* Animación 2: Entrada Diferente por Tarjeta */
+ .tarjeta-rol:nth-child(1) {
+     animation-delay: 0.2s;
+ }
+
+ .tarjeta-rol:nth-child(2) {
+     animation-delay: 0.4s;
+ }
+
+ .tarjeta-rol:nth-child(3) {
+     animation-delay: 0.6s;
+ }
+
+ .tarjeta-rol:nth-child(4) {
+     animation-delay: 0.8s;
+ }
+
+ .tarjeta-rol:nth-child(5) {
+     animation-delay: 1.0s;
+ }
+
+ .tarjeta-rol:nth-child(6) {
+     animation-delay: 1.2s;
+ }
+
+ /* Animación 4: Efecto Hover Visible en las Tarjetas */
+ .tarjeta-rol:hover {
+     transform: translateY(-12px);
+     border-color: #00eff6;
+     /* Cambio a Azul Nexo */
+     box-shadow: 0 16px 32px rgba(0, 239, 246, 0.25);
+ }
+
+ /* Efecto hover complementario de zoom en imagen interna */
+ .tarjeta-rol:hover .contenedor-imagen img {
+     transform: scale(1.08);
+ }
+
+ /* Efecto interactivo de inversión cromática en el botón */
+ .btn-accion:hover {
+     background-color: #c8aa6e;
+     color: #010a13;
+ }
+
+
+ /* 
+   5. DEFINICIÓN DE FOTOGRAMAS CLAVE    */
+
+ /* Keyframe para el título */
+ @keyframes entrada-titulo {
+     0% {
+         opacity: 0;
+         transform: translateY(-50px);
+     }
+
+     100% {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+
+ /* Keyframe para las tarjetas */
+ @keyframes entrada-tarjeta {
+     0% {
+         opacity: 0;
+         transform: scale(0.92) translateY(30px);
+     }
+
+     100% {
+         opacity: 1;
+         transform: scale(1) translateY(0);
+     }
+ }
+
+ /* Keyframe para la animación continua infinite del badge */
+ @keyframes pulso-etiqueta {
+     0% {
+         transform: scale(1);
+         box-shadow: 0 0 0 0 rgba(0, 239, 246, 0.5);
+     }
+
+     50% {
+         transform: scale(1.06);
+         box-shadow: 0 0 12px 4px rgba(0, 239, 246, 0.25);
+     }
+
+     100% {
+         transform: scale(1);
+         box-shadow: 0 0 0 0 rgba(0, 239, 246, 0);
+     }
+ }
